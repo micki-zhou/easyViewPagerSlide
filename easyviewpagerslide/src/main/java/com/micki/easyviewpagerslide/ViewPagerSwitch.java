@@ -6,9 +6,12 @@ import android.graphics.Matrix;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
@@ -27,9 +30,9 @@ public class ViewPagerSwitch {
     private ViewPager viewPager;
     private TextView[] textViews;
     // Tab页面列表
-    private List<View> listViews;
+    private List<View> views;
     // 动画图片
-    private ImageView cursor;
+    //private ImageView cursor;
 
     // 动画图片偏移量
     private int offset = 0;
@@ -41,28 +44,49 @@ public class ViewPagerSwitch {
     private int screenWidth;
 
 
-
     /**
      * @param context
-     * @param viewPager   传入ViewPager
-     * @param textViews   头标
-     * @param listViews   子页View
-     * @param cursor      动画游标
-     * @param screenWidth 屏幕宽度
+     * @param viewPager 传入ViewPager
+     * @param textViews 头标
+     * @param views     子页View
+     * @param cursor    动画游标
      */
-    public ViewPagerSwitch(Context context, ViewPager viewPager, TextView[] textViews, List<View> listViews, ImageView cursor, int screenWidth) {
+    public ViewPagerSwitch(Context context, ViewPager viewPager, TextView[] textViews, List<View> views) {
         this.context = context;
         this.viewPager = viewPager;
-        this.cursor = cursor;
         this.textViews = textViews;
-        this.listViews = listViews;
-        this.screenWidth = screenWidth;
+        this.views = views;
+        //this.cursor = cursor;
+        initView();
+    }
+
+    private void initView() {
+        this.screenWidth = getScreenWidth();
         initViewPager();
     }
 
+    private int getScreenWidth() {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(dm);
+        return dm.widthPixels;
+    }
+
+    /*private void getCursorWidth() {
+        ViewTreeObserver vto = cursor.getViewTreeObserver();
+        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                bitmapWidth = cursor.getMeasuredWidth();
+                initImageViewCursor();
+                return true;
+            }
+        });
+    }*/
+
     private void initViewPager() {
         viewWidth = screenWidth / textViews.length;
-        initImageViewCursor();
+        //getCursorWidth();
         // viewPager滑动事件
         viewPager.addOnPageChangeListener(new PageChangeListener());
 
@@ -70,23 +94,20 @@ public class ViewPagerSwitch {
             textViews[i].setOnClickListener(new BannerOnClickLister(i));
         }
 
-        viewPager.setAdapter(new ViewPagerAdapter(listViews));
+        viewPager.setAdapter(new ViewPagerAdapter(views));
         // 默认打开第一个页卡
         viewPager.setCurrentItem(0);
 
     }
 
     // 初始化动画
-    private void initImageViewCursor() {
-        // 获取图片宽度
-        bitmapWidth = cursor.getMeasuredWidth();
-        Log.d("ZMJ","b = "+bitmapWidth);
+    /*private void initImageViewCursor() {
         // 计算偏移量
         offset = (viewWidth - bitmapWidth) / 2;
         Matrix matrix = new Matrix();
         matrix.postTranslate(offset, 0);
         cursor.setImageMatrix(matrix);
-    }
+    }*/
 
     //  ViewPager点击事件，添加动画
     private class PageChangeListener implements ViewPager.OnPageChangeListener {
@@ -148,7 +169,7 @@ public class ViewPagerSwitch {
             animation.setFillEnabled(true);
             animation.setFillAfter(true);
             animation.setDuration(300);
-            cursor.startAnimation(animation);
+            //cursor.startAnimation(animation);
             changeTextColor(cursorIndex);
         }
 

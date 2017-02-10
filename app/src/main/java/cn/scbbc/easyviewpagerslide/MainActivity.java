@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         listViews.add(allOrderView);
         listViews.add(payView);
         listViews.add(serviceView);
-        new ViewPagerSwitch(this, viewPager, textViews, listViews, imageView, 720);
+        new ViewPagerSwitch(this, viewPager, textViews, listViews);
     }
 
 }

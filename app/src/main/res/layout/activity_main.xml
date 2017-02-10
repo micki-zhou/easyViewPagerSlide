@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="cn.scbbc.easyviewpagerslide.MainActivity">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/linearLayout_banner"
@@ -21,7 +19,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="进行中"
-            android:textColor="@color/default_color"
+            android:textColor="@color/selected_color"
             android:textSize="15sp" />
 
         <TextView
@@ -48,8 +46,9 @@
 
     <ImageView
         android:id="@+id/imageView_cursor"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout_banner"
         android:scaleType="matrix"
         android:src="@drawable/img_bg_heng_1" />
 
@@ -57,8 +56,9 @@
         android:id="@+id/viewPager_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView_cursor"
         android:flipInterval="30"
         android:persistentDrawingCache="animation">
 
     </android.support.v4.view.ViewPager>
-</LinearLayout>
+</RelativeLayout>
