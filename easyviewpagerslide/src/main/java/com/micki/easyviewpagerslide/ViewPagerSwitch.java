@@ -29,27 +29,26 @@ public class ViewPagerSwitch {
 
     private ViewPager viewPager;
     private TextView[] textViews;
-    // Tab页面列表
+    // child view
     private List<View> views;
-    // 动画图片
+
     //private ImageView cursor;
 
-    // 动画图片偏移量
+    // offset
     private int offset = 0;
-    // 当前页卡编号
+    // cursor page
     private int cursorIndex = 0;
-    // 动画图片宽度
+
     private int bitmapWidth;
     private int viewWidth;
     private int screenWidth;
 
 
     /**
-     * @param context
-     * @param viewPager 传入ViewPager
-     * @param textViews 头标
-     * @param views     子页View
-     * @param cursor    动画游标
+     * @param context   context
+     * @param viewPager ViewPager
+     * @param textViews title view
+     * @param views     child view
      */
     public ViewPagerSwitch(Context context, ViewPager viewPager, TextView[] textViews, List<View> views) {
         this.context = context;
@@ -86,8 +85,7 @@ public class ViewPagerSwitch {
 
     private void initViewPager() {
         viewWidth = screenWidth / textViews.length;
-        //getCursorWidth();
-        // viewPager滑动事件
+        // viewPage add listener
         viewPager.addOnPageChangeListener(new PageChangeListener());
 
         for (int i = 0; i < textViews.length; i++) {
@@ -95,7 +93,7 @@ public class ViewPagerSwitch {
         }
 
         viewPager.setAdapter(new ViewPagerAdapter(views));
-        // 默认打开第一个页卡
+        // default open first view
         viewPager.setCurrentItem(0);
 
     }
@@ -109,7 +107,9 @@ public class ViewPagerSwitch {
         cursor.setImageMatrix(matrix);
     }*/
 
-    //  ViewPager点击事件，添加动画
+    /**
+     * page change listener
+     */
     private class PageChangeListener implements ViewPager.OnPageChangeListener {
         // 三个距离的动画偏移量
         int first = viewWidth;
@@ -179,7 +179,9 @@ public class ViewPagerSwitch {
         }
     }
 
-    //  页卡点击事件
+    /**
+     * page click
+     */
     private class BannerOnClickLister implements View.OnClickListener {
 
         private int index = 0;
@@ -195,7 +197,9 @@ public class ViewPagerSwitch {
         }
     }
 
-    // viewPager适配器
+    /**
+     * view pager adapter
+     */
     private class ViewPagerAdapter extends PagerAdapter {
 
         private List<View> listViews;
@@ -226,7 +230,9 @@ public class ViewPagerSwitch {
         }
     }
 
-    // 改变字体颜色
+    /**
+     * @param currentPage selected page
+     */
     private void changeTextColor(int currentPage) {
         int count = textViews.length;
         for (int index = 0; index < count; index++) {
