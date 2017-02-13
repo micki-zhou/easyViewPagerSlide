@@ -42,20 +42,49 @@ public class ViewPagerSwitch {
     private int bitmapWidth;
     private int viewWidth;
     private int screenWidth;
+    private int unSelectedColor;
+    private int selectedColor;
 
 
-    /**
-     * @param context   context
-     * @param viewPager ViewPager
-     * @param textViews title view
-     * @param views     child view
-     */
-    public ViewPagerSwitch(Context context, ViewPager viewPager, TextView[] textViews, List<View> views) {
+    private ViewPagerSwitch() {
+
+    }
+
+    public static ViewPagerSwitch getInstance() {
+        return new ViewPagerSwitch();
+    }
+
+    public ViewPagerSwitch init(Context context) {
         this.context = context;
+        return this;
+    }
+
+    public ViewPagerSwitch setUnSelectedColor(int unSelectedColor) {
+        this.unSelectedColor = unSelectedColor;
+        return this;
+    }
+
+    public ViewPagerSwitch setSelectedColor(int selectedColor) {
+        this.selectedColor = selectedColor;
+        return this;
+    }
+
+    public ViewPagerSwitch addViewPager(ViewPager viewPager) {
         this.viewPager = viewPager;
+        return this;
+    }
+
+    public ViewPagerSwitch addTitles(TextView[] textViews) {
         this.textViews = textViews;
+        return this;
+    }
+
+    public ViewPagerSwitch addChildViews(List<View> views) {
         this.views = views;
-        //this.cursor = cursor;
+        return this;
+    }
+
+    public void build() {
         initView();
     }
 
@@ -111,7 +140,7 @@ public class ViewPagerSwitch {
      * page change listener
      */
     private class PageChangeListener implements ViewPager.OnPageChangeListener {
-        // 三个距离的动画偏移量
+
         int first = viewWidth;
         int second = first * 2;
 

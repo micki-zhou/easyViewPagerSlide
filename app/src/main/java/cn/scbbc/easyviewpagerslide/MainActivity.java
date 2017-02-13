@@ -20,21 +20,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView textView1 = (TextView) findViewById(R.id.text_doing);
-        TextView textView2 = (TextView) findViewById(R.id.text_finish);
-        TextView textView3 = (TextView) findViewById(R.id.text_close);
+        TextView textView1 = (TextView) findViewById(R.id.tv_first);
+        TextView textView2 = (TextView) findViewById(R.id.tv_second);
+        TextView textView3 = (TextView) findViewById(R.id.tv_third);
         ImageView imageView = (ImageView) findViewById(R.id.imageView_cursor);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager_title);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         TextView[] textViews = {textView1, textView2, textView3};
+
         View allOrderView = View.inflate(this, R.layout.view_1, null);
         View payView = View.inflate(this, R.layout.view_2, null);
         View serviceView = View.inflate(this, R.layout.view_3, null);
+
         List<View> listViews = new ArrayList<>();
         listViews.add(allOrderView);
         listViews.add(payView);
         listViews.add(serviceView);
-        new ViewPagerSwitch(this, viewPager, textViews, listViews);
+
+        ViewPagerSwitch
+                .getInstance()
+                .init(this)
+                .addViewPager(viewPager)
+                .addTitles(textViews)
+                .addChildViews(listViews)
+                .build();
+
     }
 
 }
