@@ -3,7 +3,7 @@
 
 #Compile
 
-    `compile 'com.micki.easyViewPagerSlide:1.1.0'`
+     compile 'com.micki.easyViewPagerSlide:1.1.0'
 
 #Usage
 
