@@ -3,21 +3,23 @@
 
 #Compile
 
+```groovy
      compile 'com.micki.easyViewPagerSlide:1.1.0'
+```
 
 #Usage
-
-    `ViewPagerSwitch
-        .getInstance() // must first
-        .init(context)
-        .addViewPager(viewPager)
-        .addTitles(textViews)
-        .addChildViews(listViews)
-        .build(); // must last`
-
+```java
+ViewPagerSwitch
+    .getInstance() // must first
+    .init(this)
+    .addViewPager(viewPager)
+    .addTitles(textViews)
+    .addChildViews(listViews)
+    .build(); // must last
+```
 #In XML
-
-         `<LinearLayout
+```xml
+         <LinearLayout
              android:id="@+id/linearLayout_banner"
              android:layout_width="match_parent"
              android:layout_height="wrap_content">
@@ -64,31 +66,31 @@
              android:flipInterval="30"
              android:persistentDrawingCache="animation">
 
-         </android.support.v4.view.ViewPager>`
-
+         </android.support.v4.view.ViewPager>
+```
 #In Activity or Fragment
+```java
+         TextView textView1 = (TextView) findViewById(R.id.tv_first);
+         TextView textView2 = (TextView) findViewById(R.id.tv_second);
+         TextView textView3 = (TextView) findViewById(R.id.tv_third);
 
-         `TextView textView1 = (TextView) findViewById(R.id.tv_first);
-          TextView textView2 = (TextView) findViewById(R.id.tv_second);
-          TextView textView3 = (TextView) findViewById(R.id.tv_third);
+         TextView[] textViews = {textView1, textView2, textView3};//titles
 
-          TextView[] textViews = {textView1, textView2, textView3};//titles
+         // child views
+         View view1 = View.inflate(this, R.layout.view_1, null);
+         View view2 = View.inflate(this, R.layout.view_2, null);
+         View view3 = View.inflate(this, R.layout.view_3, null);
 
-          // child views
-          View view1 = View.inflate(this, R.layout.view_1, null);
-          View view2 = View.inflate(this, R.layout.view_2, null);
-          View view3 = View.inflate(this, R.layout.view_3, null);
+         List<View> views = new ArrayList<>();
+         views.add(view1);
+         views.add(view2);
+         views.add(view3);
 
-          List<View> views = new ArrayList<>();
-          views.add(view1);
-          views.add(view2);
-          views.add(view3);
-
-          ViewPagerSwitch
-                   .getInstance() // must first
-                   .init(context)
-                   .addViewPager(viewPager)
-                   .addTitles(textViews)
-                   .addChildViews(listViews)
-                   .build(); // must last`
-
+         ViewPagerSwitch
+            .getInstance() // must first
+            .init(context)
+            .addViewPager(viewPager)
+            .addTitles(textViews)
+            .addChildViews(listViews)
+            .build(); // must last
+```
