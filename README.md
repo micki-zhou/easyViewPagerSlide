@@ -3,17 +3,17 @@
 
 #Compile
 
-`compile 'com.micki.easyViewPagerSlide:1.1.0'`
+    `compile 'com.micki.easyViewPagerSlide:1.1.0'`
 
 #Usage
 
-`ViewPagerSwitch
-         .getInstance() // must first
-         .init(context)
-         .addViewPager(viewPager)
-         .addTitles(textViews)
-         .addChildViews(listViews)
-         .build(); // must last`
+    `ViewPagerSwitch
+        .getInstance() // must first
+        .init(context)
+        .addViewPager(viewPager)
+        .addTitles(textViews)
+        .addChildViews(listViews)
+        .build(); // must last`
 
 #In XML
 

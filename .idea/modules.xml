@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/EasyViewPagerSlide.iml" filepath="$PROJECT_DIR$/EasyViewPagerSlide.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/easyViewPagerSlide.iml" filepath="$PROJECT_DIR$/easyViewPagerSlide.iml" />
       <module fileurl="file://$PROJECT_DIR$/easyviewpagerslide/easyviewpagerslide.iml" filepath="$PROJECT_DIR$/easyviewpagerslide/easyviewpagerslide.iml" />
     </modules>
   </component>
