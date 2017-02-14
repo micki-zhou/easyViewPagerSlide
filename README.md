@@ -6,7 +6,7 @@
 #Compile
 
 ```groovy
-compile 'com.micki:easyViewPagerSlide:1.1.0'
+compile 'com.micki:easyViewPagerSlide:1.2.0'
 ```
 
 #Usage
@@ -17,6 +17,8 @@ ViewPagerSwitch
     .addViewPager(viewPager)
     .addTitles(textViews)
     .addChildViews(views)
+    .setSelectedColor(R.color.colorAccent)
+    .setUnSelectedColor(R.color.colorPrimary)
     .build(); // must last
 ```
 #In XML
@@ -95,5 +97,7 @@ ViewPagerSwitch
     .addViewPager(viewPager)
     .addTitles(tabs)
     .addChildViews(views)
+    .setSelectedColor(R.color.colorAccent)
+    .setUnSelectedColor(R.color.colorPrimary)
     .build(); // must last
 ```

@@ -19,7 +19,7 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="first"
-            android:textColor="@color/selected_color"
+            android:textColor="@color/unselected_color"
             android:textSize="15sp" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_weight="1.0"
             android:gravity="center"
             android:text="second"
-            android:textColor="@color/default_color"
+            android:textColor="@color/unselected_color"
             android:textSize="15sp" />
 
 
@@ -40,7 +40,7 @@
             android:layout_weight="1.0"
             android:gravity="center"
             android:text="third"
-            android:textColor="@color/default_color"
+            android:textColor="@color/unselected_color"
             android:textSize="15sp" />
     </LinearLayout>
 

@@ -42,8 +42,8 @@ public class ViewPagerSwitch {
     private int bitmapWidth;
     private int viewWidth;
     private int screenWidth;
-    private int unSelectedColor;
-    private int selectedColor;
+    private int unSelectedColor = 0;
+    private int selectedColor = 0;
 
 
     private ViewPagerSwitch() {
@@ -124,7 +124,7 @@ public class ViewPagerSwitch {
         viewPager.setAdapter(new ViewPagerAdapter(views));
         // default open first view
         viewPager.setCurrentItem(0);
-
+        changeTextColor(0);
     }
 
     // 初始化动画
@@ -266,9 +266,16 @@ public class ViewPagerSwitch {
         int count = textViews.length;
         for (int index = 0; index < count; index++) {
             if (index == currentPage) {
-                textViews[index].setTextColor(ContextCompat.getColor(context, R.color.selected_color));
+                if (selectedColor != 0)
+                    textViews[index].setTextColor(ContextCompat.getColor(context, selectedColor));
+                else
+                    textViews[index].setTextColor(ContextCompat.getColor(context, R.color.selected_color));
+
             } else {
-                textViews[index].setTextColor(ContextCompat.getColor(context, R.color.default_color));
+                if (unSelectedColor != 0)
+                    textViews[index].setTextColor(ContextCompat.getColor(context, unSelectedColor));
+                else
+                    textViews[index].setTextColor(ContextCompat.getColor(context, R.color.unselected_color));
             }
         }
     }

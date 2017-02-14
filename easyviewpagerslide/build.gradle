@@ -49,7 +49,7 @@ publish {
     userOrg = 'mickizhou'
     groupId = 'com.micki'
     artifactId = 'easyViewPagerSlide'
-    publishVersion = '1.1.0'
+    publishVersion = '1.2.0'
     desc = 'a slide viewpager'
     website = 'https://github.com/micki-zhou/easyViewPagerSlide'
 }
