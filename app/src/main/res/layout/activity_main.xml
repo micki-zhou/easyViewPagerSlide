@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout_banner"
         android:scaleType="matrix"
+        android:visibility="invisible"
         android:src="@drawable/img_bg_heng_1" />
 
     <android.support.v4.view.ViewPager

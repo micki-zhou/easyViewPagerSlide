@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 .getInstance()
                 .init(this)
                 .addViewPager(viewPager)
-                .addTitles(textViews)
+                .addTabs(textViews)
                 .addChildViews(listViews)
                 .build();
 

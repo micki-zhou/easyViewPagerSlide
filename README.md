@@ -12,7 +12,7 @@ ViewPagerSwitch
     .init(this)
     .addViewPager(viewPager)
     .addTitles(textViews)
-    .addChildViews(listViews)
+    .addChildViews(views)
     .build(); // must last
 ```
 #In XML
@@ -72,8 +72,8 @@ TextView textView1 = (TextView) findViewById(R.id.tv_first);
 TextView textView2 = (TextView) findViewById(R.id.tv_second);
 TextView textView3 = (TextView) findViewById(R.id.tv_third);
 
-// titles
-TextView[] textViews = {textView1, textView2, textView3};
+// tabs
+TextView[] tabs = {textView1, textView2, textView3};
 
 // child views
 View view1 = View.inflate(this, R.layout.view_1, null);
@@ -89,7 +89,7 @@ ViewPagerSwitch
     .getInstance() // must first
     .init(this)
     .addViewPager(viewPager)
-    .addTitles(textViews)
-    .addChildViews(listViews)
+    .addTitles(tabs)
+    .addChildViews(views)
     .build(); // must last
 ```

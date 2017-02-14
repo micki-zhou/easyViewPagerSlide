@@ -74,7 +74,7 @@ public class ViewPagerSwitch {
         return this;
     }
 
-    public ViewPagerSwitch addTitles(TextView[] textViews) {
+    public ViewPagerSwitch addTabs(TextView[] textViews) {
         this.textViews = textViews;
         return this;
     }
