@@ -1,4 +1,8 @@
 
+#easyViewPagerSlide
+
+![](https://github.com/micki-zhou/easyViewPagerSlide/blob/master/easyViewPager.gif)
+
 #Compile
 
 ```groovy
