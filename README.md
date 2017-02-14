@@ -6,7 +6,7 @@
 #Compile
 
 ```groovy
-compile 'com.micki:easyViewPagerSlide:1.2.0'
+compile 'me.micki:easyViewPagerSlide:1.2.1'
 ```
 
 #Usage
