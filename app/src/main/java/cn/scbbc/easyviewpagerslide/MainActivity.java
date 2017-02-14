@@ -43,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 .addViewPager(viewPager)
                 .addTabs(textViews)
                 .addChildViews(listViews)
-                .setSelectedColor(R.color.colorAccent)
-                .setUnSelectedColor(R.color.colorPrimary)
+                .setSelectedColor(R.color.colorAccent1)
+                .setUnSelectedColor(R.color.colorAccent2)
+                .addCursor(imageView)
                 .build();
 
     }

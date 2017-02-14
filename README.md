@@ -6,7 +6,7 @@
 #Compile
 
 ```groovy
-compile 'me.micki:easyViewPagerSlide:1.2.1'
+compile 'me.micki:easyViewPagerSlide:1.3.0'
 ```
 
 #Usage
@@ -14,11 +14,12 @@ compile 'me.micki:easyViewPagerSlide:1.2.1'
 ViewPagerSwitch
     .getInstance() // must first
     .init(this)
-    .addViewPager(viewPager)
-    .addTitles(textViews)
-    .addChildViews(views)
-    .setSelectedColor(R.color.colorAccent)
-    .setUnSelectedColor(R.color.colorPrimary)
+    .addViewPager(viewPager) // add viewPager 添加viewPager
+    .addTabs(tabs) // add tabs 添加标签
+    .addChildViews(views) // add childViews 添加子页面
+    .addCursor(cursor) // add cursor 添加游标
+    .setSelectedColor(R.color.colorAccent) // setting seleted tab color 设置选中tab时的颜色
+    .setUnSelectedColor(R.color.colorPrimary) // setting unSeleted tab color 设置未选中tab时的颜色
     .build(); // must last
 ```
 #In XML
@@ -62,11 +63,19 @@ ViewPagerSwitch
              android:textSize="15sp" />
 </LinearLayout>
 
+<ImageView
+        android:id="@+id/imageView_cursor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout_banner"
+        android:scaleType="matrix"
+        android:src="@drawable/img_cursor" />
+
 <android.support.v4.view.ViewPager
      android:id="@+id/viewPager"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:layout_below="@+id/linearLayout_banner"
+     android:layout_below="@+id/imageView_cursor"
      android:flipInterval="30"
      android:persistentDrawingCache="animation">
 
@@ -91,12 +100,15 @@ List<View> views = new ArrayList<>();
     views.add(view2);
     views.add(view3);
 
+ImageView cursor = (ImageView) findViewById(R.id.imageView_cursor);
+
 ViewPagerSwitch
     .getInstance() // must first
     .init(this)
     .addViewPager(viewPager)
-    .addTitles(tabs)
+    .addTabs(tabs)
     .addChildViews(views)
+    .addCursor(cursor)
     .setSelectedColor(R.color.colorAccent)
     .setUnSelectedColor(R.color.colorPrimary)
     .build(); // must last

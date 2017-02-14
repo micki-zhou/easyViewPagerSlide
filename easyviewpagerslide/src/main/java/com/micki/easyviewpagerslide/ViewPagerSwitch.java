@@ -1,7 +1,6 @@
 package com.micki.easyviewpagerslide;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
@@ -25,14 +24,16 @@ import java.util.List;
  */
 
 public class ViewPagerSwitch {
+
+    private static final String TAG = ViewPagerSwitch.class.getSimpleName();
     private Context context;
 
     private ViewPager viewPager;
-    private TextView[] textViews;
+    private TextView[] tabs;
     // child view
     private List<View> views;
 
-    //private ImageView cursor;
+    private ImageView cursor;
 
     // offset
     private int offset = 0;
@@ -74,13 +75,18 @@ public class ViewPagerSwitch {
         return this;
     }
 
-    public ViewPagerSwitch addTabs(TextView[] textViews) {
-        this.textViews = textViews;
+    public ViewPagerSwitch addTabs(TextView[] tabs) {
+        this.tabs = tabs;
         return this;
     }
 
     public ViewPagerSwitch addChildViews(List<View> views) {
         this.views = views;
+        return this;
+    }
+
+    public ViewPagerSwitch addCursor(ImageView cursor) {
+        this.cursor = cursor;
         return this;
     }
 
@@ -90,6 +96,22 @@ public class ViewPagerSwitch {
 
     private void initView() {
         this.screenWidth = getScreenWidth();
+        check();
+    }
+
+    private void check() {
+        if (viewPager == null) {
+            Log.e(TAG, "未添加viewPager");
+            return;
+        }
+        if (tabs == null || tabs.length <= 0) {
+            Log.e(TAG, "未添加tabs");
+            return;
+        }
+        if (views == null || views.size() <= 0) {
+            Log.e(TAG, "未添加childViews");
+            return;
+        }
         initViewPager();
     }
 
@@ -100,25 +122,14 @@ public class ViewPagerSwitch {
         return dm.widthPixels;
     }
 
-    /*private void getCursorWidth() {
-        ViewTreeObserver vto = cursor.getViewTreeObserver();
-        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                bitmapWidth = cursor.getMeasuredWidth();
-                initImageViewCursor();
-                return true;
-            }
-        });
-    }*/
-
     private void initViewPager() {
-        viewWidth = screenWidth / textViews.length;
+        viewWidth = screenWidth / tabs.length;
+        getCursorWidth();
         // viewPage add listener
         viewPager.addOnPageChangeListener(new PageChangeListener());
 
-        for (int i = 0; i < textViews.length; i++) {
-            textViews[i].setOnClickListener(new BannerOnClickLister(i));
+        for (int i = 0; i < tabs.length; i++) {
+            tabs[i].setOnClickListener(new BannerOnClickLister(i));
         }
 
         viewPager.setAdapter(new ViewPagerAdapter(views));
@@ -127,14 +138,31 @@ public class ViewPagerSwitch {
         changeTextColor(0);
     }
 
-    // 初始化动画
-    /*private void initImageViewCursor() {
+    private void getCursorWidth() {
+        if (cursor == null) {
+            return;
+        }
+        ViewTreeObserver vto = cursor.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                cursor.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                bitmapWidth = cursor.getWidth();
+                initImageViewCursor();
+            }
+        });
+    }
+
+    // init cursor
+    private void initImageViewCursor() {
         // 计算偏移量
         offset = (viewWidth - bitmapWidth) / 2;
-        Matrix matrix = new Matrix();
+        /*Matrix matrix = new Matrix();
         matrix.postTranslate(offset, 0);
-        cursor.setImageMatrix(matrix);
-    }*/
+        cursor.setScaleType(ImageView.ScaleType.MATRIX);
+        cursor.setImageMatrix(matrix);*/
+        cursor.setPadding(offset, 0, 0, 0);
+    }
 
     /**
      * page change listener
@@ -198,7 +226,8 @@ public class ViewPagerSwitch {
             animation.setFillEnabled(true);
             animation.setFillAfter(true);
             animation.setDuration(300);
-            //cursor.startAnimation(animation);
+            if (cursor != null)
+                cursor.startAnimation(animation);
             changeTextColor(cursorIndex);
         }
 
@@ -263,19 +292,19 @@ public class ViewPagerSwitch {
      * @param currentPage selected page
      */
     private void changeTextColor(int currentPage) {
-        int count = textViews.length;
+        int count = tabs.length;
         for (int index = 0; index < count; index++) {
             if (index == currentPage) {
                 if (selectedColor != 0)
-                    textViews[index].setTextColor(ContextCompat.getColor(context, selectedColor));
+                    tabs[index].setTextColor(ContextCompat.getColor(context, selectedColor));
                 else
-                    textViews[index].setTextColor(ContextCompat.getColor(context, R.color.selected_color));
+                    tabs[index].setTextColor(ContextCompat.getColor(context, R.color.selected_color));
 
             } else {
                 if (unSelectedColor != 0)
-                    textViews[index].setTextColor(ContextCompat.getColor(context, unSelectedColor));
+                    tabs[index].setTextColor(ContextCompat.getColor(context, unSelectedColor));
                 else
-                    textViews[index].setTextColor(ContextCompat.getColor(context, R.color.unselected_color));
+                    tabs[index].setTextColor(ContextCompat.getColor(context, R.color.unselected_color));
             }
         }
     }
