@@ -157,10 +157,6 @@ public class ViewPagerSwitch {
     private void initImageViewCursor() {
         // 计算偏移量
         offset = (viewWidth - bitmapWidth) / 2;
-        /*Matrix matrix = new Matrix();
-        matrix.postTranslate(offset, 0);
-        cursor.setScaleType(ImageView.ScaleType.MATRIX);
-        cursor.setImageMatrix(matrix);*/
         cursor.setPadding(offset, 0, 0, 0);
     }
 
