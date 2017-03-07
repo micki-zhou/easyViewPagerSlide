@@ -23,19 +23,27 @@ public class MainActivity extends AppCompatActivity {
         TextView textView1 = (TextView) findViewById(R.id.tv_first);
         TextView textView2 = (TextView) findViewById(R.id.tv_second);
         TextView textView3 = (TextView) findViewById(R.id.tv_third);
+        TextView textView4 = (TextView) findViewById(R.id.tv_four);
+        TextView textView5 = (TextView) findViewById(R.id.tv_five);
+
+
         ImageView imageView = (ImageView) findViewById(R.id.imageView_cursor);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        TextView[] textViews = {textView1, textView2, textView3};
+        TextView[] textViews = {textView1, textView2, textView3, textView4, textView5};
 
-        View allOrderView = View.inflate(this, R.layout.view_1, null);
-        View payView = View.inflate(this, R.layout.view_2, null);
-        View serviceView = View.inflate(this, R.layout.view_3, null);
+        View view1 = View.inflate(this, R.layout.view_1, null);
+        View view2 = View.inflate(this, R.layout.view_2, null);
+        View view3 = View.inflate(this, R.layout.view_3, null);
+        View view4 = View.inflate(this, R.layout.view_4, null);
+        View view5 = View.inflate(this, R.layout.view_5, null);
 
         List<View> listViews = new ArrayList<>();
-        listViews.add(allOrderView);
-        listViews.add(payView);
-        listViews.add(serviceView);
+        listViews.add(view1);
+        listViews.add(view2);
+        listViews.add(view3);
+        listViews.add(view4);
+        listViews.add(view5);
 
         ViewPagerSwitch
                 .getInstance()

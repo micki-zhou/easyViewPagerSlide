@@ -1,7 +1,6 @@
 package com.micki.easyviewpagerslide;
 
 import android.content.Context;
-import android.graphics.Matrix;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -167,6 +166,8 @@ public class ViewPagerSwitch {
 
         int first = viewWidth;
         int second = first * 2;
+        int third = first * 3;
+        int four = first * 4;
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -183,9 +184,11 @@ public class ViewPagerSwitch {
                         animation = new TranslateAnimation(first, 0, 0, 0);
                     } else if (cursorIndex == 2) {
                         animation = new TranslateAnimation(second, 0, 0, 0);
-                    } /*else if (cursorIndex == 3) {
+                    } else if (cursorIndex == 3) {
                         animation = new TranslateAnimation(third, 0, 0, 0);
-                    }*/
+                    } else if (cursorIndex == 4) {
+                        animation = new TranslateAnimation(four, 0, 0, 0);
+                    }
                     break;
                 case 1:
 
@@ -193,9 +196,11 @@ public class ViewPagerSwitch {
                         animation = new TranslateAnimation(offset, first, 0, 0);
                     } else if (cursorIndex == 2) {
                         animation = new TranslateAnimation(second, first, 0, 0);
-                    } /*else if (cursorIndex == 3) {
+                    } else if (cursorIndex == 3) {
                         animation = new TranslateAnimation(third, first, 0, 0);
-                    }*/
+                    } else if (cursorIndex == 4) {
+                        animation = new TranslateAnimation(four, first, 0, 0);
+                    }
                     break;
                 case 2:
 
@@ -203,11 +208,13 @@ public class ViewPagerSwitch {
                         animation = new TranslateAnimation(offset, second, 0, 0);
                     } else if (cursorIndex == 1) {
                         animation = new TranslateAnimation(first, second, 0, 0);
-                    } /*else if (cursorIndex == 3) {
+                    } else if (cursorIndex == 3) {
                         animation = new TranslateAnimation(third, second, 0, 0);
-                    }*/
+                    } else if (cursorIndex == 4) {
+                        animation = new TranslateAnimation(four, second, 0, 0);
+                    }
                     break;
-                /*case 3:
+                case 3:
 
                     if (cursorIndex == 0) {
                         animation = new TranslateAnimation(0, third, 0, 0);
@@ -215,8 +222,22 @@ public class ViewPagerSwitch {
                         animation = new TranslateAnimation(first, third, 0, 0);
                     } else if (cursorIndex == 2) {
                         animation = new TranslateAnimation(second, third, 0, 0);
+                    } else if (cursorIndex == 4) {
+                        animation = new TranslateAnimation(four, third, 0, 0);
                     }
-                    break;*/
+                    break;
+                case 4:
+
+                    if (cursorIndex == 0) {
+                        animation = new TranslateAnimation(0, four, 0, 0);
+                    } else if (cursorIndex == 1) {
+                        animation = new TranslateAnimation(first, four, 0, 0);
+                    } else if (cursorIndex == 2) {
+                        animation = new TranslateAnimation(second, four, 0, 0);
+                    } else if (cursorIndex == 3) {
+                        animation = new TranslateAnimation(third, four, 0, 0);
+                    }
+                    break;
             }
             cursorIndex = position;
             animation.setFillEnabled(true);
@@ -256,26 +277,26 @@ public class ViewPagerSwitch {
      */
     private class ViewPagerAdapter extends PagerAdapter {
 
-        private List<View> listViews;
+        private List<View> views;
 
-        public ViewPagerAdapter(List<View> listViews) {
-            this.listViews = listViews;
+        public ViewPagerAdapter(List<View> views) {
+            this.views = views;
         }
 
         @Override
         public int getCount() {
-            return listViews.size();
+            return views.size();
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            ((ViewPager) container).addView(listViews.get(position));
-            return listViews.get(position);
+            ((ViewPager) container).addView(views.get(position));
+            return views.get(position);
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView(listViews.get(position));
+            ((ViewPager) container).removeView(views.get(position));
         }
 
         @Override
